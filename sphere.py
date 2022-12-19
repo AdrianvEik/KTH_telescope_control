@@ -25,15 +25,13 @@ class sphere:
             self.points[i, 2] = self.z + self.radius * np.sin(2 * np.pi * i / self.resolution)
         return self.points
 
-    def plot(self, pos: list = (0, 0)):
-        fig = plt.figure()
-        ax = fig.add_subplot(projection='3d')
-        ax.plot(self.points[:, 0], self.points[:, 1], np.zeros(self.points.shape[0]))
-        ax.plot(self.points[:, 0], np.zeros(self.points.shape[0]), self.points[:, 2])
+    def plot(self, ax, pos: list = (0, 0)):
+        ax.scatter(self.points[:, 0], self.points[:, 1], np.zeros(self.points.shape[0]))
+        ax.scatter(self.points[:, 0], np.zeros(self.points.shape[0]), self.points[:, 2])
+        ax.scatter(np.zeros(self.points.shape[0]), self.points[:, 0] , self.points[:, 2])
+
 
         ax.view_init(elev=pos[0], azim=pos[1])
-
-        plt.show()
 
 
 class point:
@@ -49,7 +47,7 @@ class point:
 
 
 
-s = sphere(0, 0, 0, 5)
-s.draw()
-s.plot([45,45])
+# s = sphere(0, 0, 0, 5)
+# s.draw()
+# s.plot([45,45])
 
